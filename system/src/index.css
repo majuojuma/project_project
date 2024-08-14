@@ -5,28 +5,37 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+
 }
 .header{
   color: rgb(253, 253, 253);
   width: 100%;
-  height: 70px;
+  /* position: 0; */
+  position: fixed;
+  height: 90px;
   background: #1da5db;
   text-align: center;
  padding: 5px;
-top: auto;
+top: 0;
+
 }
 .nav{
-
+  position:fixed;
   float: left;
   color: rgb(255, 255, 255);
-  width: 20%;
-  height: 500px;
-  background: #ececec;
+  width: 15%;
+  /* margin-right: 299999px; */
+  padding-left: 15px;
+  top: 12.5%;
+  margin-top: 20px;
+  height: 1000px;
+  background: #181717;
 }
 
 .btn{
@@ -34,7 +43,12 @@ top: auto;
   text-emphasis: none;
   text-align: center;
   padding: 5px;
-
+}
+.btn1{
+  background-color: rgb(196, 16, 16);
+    text-emphasis: none;
+    text-align: center;
+    padding: 5px; 
 }
 /* login */
 .login-form {
@@ -122,6 +136,7 @@ top: auto;
   display: flex;
   flex-direction: column;
   width: 300px;
+  margin-top: 2000px;
   margin: auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -381,12 +396,21 @@ h1 {
 .settings-content button:hover {
   background-color: #218838;
 }
+.btn{
+  background-color: #3fce32;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+}
 
 /* verification */
 .event-verification {
   width: 80%;
   margin: auto;
   padding: 20px;
+  margin-left: 15%;
+  margin-top: 60px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -446,8 +470,9 @@ h1 {
 .event-response {
   width: 80%;
   margin: auto;
+  margin-left: 15%;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #5f9e46;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
@@ -468,9 +493,9 @@ h1 {
   width: 100%;
   padding: 15px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #2ac50b;
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: #83ebd1;
   text-align: left;
 }
 
@@ -490,10 +515,11 @@ h1 {
 .event-upload {
   width: 80%;
   margin: auto;
+  margin-left: 15%;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #51df35;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(17, 241, 66, 0.1);
   font-family: Arial, sans-serif;
   text-align: center;
 }
@@ -520,7 +546,7 @@ h1 {
   width: 100%;
   padding: 8px;
   margin-top: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #0993ac;
   border-radius: 5px;
   font-size: 16px;
 }
@@ -548,7 +574,7 @@ h1 {
   width: 60%;
   margin: auto;
   padding: 30px;
-  border: 1px solid #ccc;
+  border: 1px solid #50739c;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
@@ -667,6 +693,7 @@ h1 {
   margin-top: 20px;
   padding: 10px;
   border: none;
+
   border-radius: 5px;
   background-color: #28a745;
   color: white;
@@ -683,8 +710,10 @@ h1 {
   max-width: 100%;
   overflow-x: auto;
   margin: 20px auto;
+  margin-left: 200px;
   padding: 10px;
   border: 1px solid #ddd;
+  overflow-y: auto;
   border-radius: 5px;
 }
 
@@ -712,8 +741,233 @@ h1 {
   height: auto;
   border-radius: 5px;
 }
+/* event statistics */
+.event-statistics {
+  margin-top: 100px;
+  margin-left: 190px;
+  text-align: center;
+  color: #1d1717;
+  /* background-color: #ebe5e5; */
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  color: #08a537;
+}
+
+.card {
+  background-color: #dbd7d7;
+  border-radius: 10px;
+  
+  padding: 30px;
+  width: 260px;
+  box-shadow: 0 2px 4px rgba(230, 227, 227, 0.1);
+}
+
+.card h3 {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.card p {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  color: #08a537;
+}
 
 
+ul  li  a{
+  list-style-type: none;
+}
 
+/* UpdateEvent.css */
 
+.event-update {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.event-update h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+}
+
+.event-update form {
+  display: flex;
+  flex-direction: column;
+}
+
+.event-update label {
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #555;
+}
+
+.event-update input[type="text"],
+.event-update input[type="date"],
+.event-update input[type="time"],
+.event-update select,
+.event-update input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
+}
+
+.event-update input[type="text"]:focus,
+.event-update input[type="date"]:focus,
+.event-update input[type="time"]:focus,
+.event-update select:focus {
+  border-color: #a29bfe;
+  outline: none;
+  box-shadow: 0 0 5px rgba(162, 155, 254, 0.5);
+}
+
+.event-update button {
+  padding: 12px;
+  background-color: #6c5ce7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.event-update button:hover {
+  background-color: #4e3ec9;
+}
+
+/* EventTable.css */
+
+.table-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-left: 14%;
+  margin-top: 0%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.event-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.event-table th,
+.event-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.event-table th {
+  background-color: #6c5ce7;
+  color: white;
+}
+
+.event-table td img.event-image {
+  width: 100px;
+  height: auto;
+  object-fit: cover;
+}
+
+.btn, .btn1 {
+  padding: 8px 12px;
+  margin: 0 5px;
+  background-color: #6c5ce7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn:hover, .btn1:hover {
+  background-color: #4e3ec9;
+}
+
+.btn1 {
+  background-color: #e74c3c;
+}
+
+.btn1:hover {
+  background-color: #c0392b;
+}
+
+/* Style for the main navigation container */
+/* .nav {
+  background-color: #267c15;
+  padding: 20px;
+  border-radius: 8px;
+  margin-right:500%;
+  margin: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+} */
+
+/* Style for the heading inside the navigation */
+.nav h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Remove default list styling */
+.nav ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+/* Style for individual list items */
+.nav ul li {
+  margin-bottom: 10px;
+}
+
+/* Style for the links */
+.nav ul li a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 18px;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Hover effect for the links */
+.nav ul li a:hover {
+  color: #0056b3;
+}
+
+/* Style for the link container */
+.nav ul li {
+  padding: 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Hover effect for the link container */
+.nav ul li:hover {
+  background-color: #e9ecef;
+}
 

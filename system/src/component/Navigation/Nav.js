@@ -6,17 +6,13 @@ import links from '../Dashboard/List';
 const role = localStorage.getItem('role');
 
 const Nav = ({ userRole = localStorage.getItem('role') }) => {
-  // Check if userRole exists in links object
-  // if (!links[userRole]) {
-  //   console.error(`Role ${role} does not exist in links object`);
-  //   return <div>Error: Role not found</div>;
-  // }
-
+ 
   return (
     <>
       <Header />
       <div className="nav">
-        <ul>
+      <h3 style={{marginLeft:30}}>Main Navigation</h3>
+        <ul style={{ listStyleType: 'none', paddingLeft: 0 , marginLeft: 20, marginTop:30}}>
           {links[userRole].map((link, index) => (
             <li key={index}>
               <Link to={link.path}>{link.label}</Link>

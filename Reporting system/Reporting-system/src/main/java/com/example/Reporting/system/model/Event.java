@@ -26,5 +26,12 @@ public class Event {
     @JoinColumn(name = "person_id")
     private Person person;
 
+    @ManyToOne
+    @JoinColumn(name = "shehaId")
+    private Sheha sheha;
 
+
+    public void setVerified(boolean b) {
+
+    }
 }

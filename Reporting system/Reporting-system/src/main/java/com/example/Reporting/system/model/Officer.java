@@ -6,5 +6,7 @@ import lombok.Data;
 @Data
 @Entity
 public class Officer extends User{
+    private String name;
+    private String eventType;
 
 }

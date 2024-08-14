@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -23,20 +23,23 @@ const LoginForm = () => {
       localStorage.setItem("userId", userData.userId)
 
       if(userData.role === "Admin"){
-        alert("it is admin")
+        alert("Hi admin")
+        navigate('/statistic')
       }
 
       if(userData.role === "Person"){
-        navigate('/nav');
-        alert("it is person")
+        navigate('/statistic');
+        alert("hello person")
       }
 
-      if (userData.role == "Sheha"){
-        alert("it's sheha")
+      if (userData.role === "Sheha"){
+        alert("hello sheha")
+        navigate('/statistic')
       }
 
-      if(userData.role === "Officer"){
-        alert("it's officer")
+      if(userData.role === "officer"){
+        alert("Hi officer" )
+        navigate('/statistic')
       }
       alert("success")
     }else{
@@ -62,6 +65,7 @@ const LoginForm = () => {
     return (
         <div className="login-form">
             <h2 style={{ color: '#1b5374' }}>ONLINE REPORTING EVENTS SYSTEM</h2>
+
              <form onSubmit={handleSubmit}>
                 <input
                     type="email"
@@ -73,10 +77,14 @@ const LoginForm = () => {
                 /><br /><br />
                 <input
                      type="password"
+                     placeholder='enter your password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
                 /><br />
                 <button type="submit">Login</button>
+                <br></br>
+                <br></br>
+                <Link to={'/signup'}> <button type="signup">Signup</button></Link>
              </form> 
              {error && <div className="error-message">{error}</div>}
              

@@ -27,7 +27,7 @@ const AdminSettings = () => {
 
     return (
        <><Nav />
-        <div className="admin-settings">
+        <div className="admin-settings" style={{marginLeft:"15%", marginTop:"105px"}}>
             <nav className="settings-menu">
                 <button onClick={() => setView('menu')}>Menu</button>
                 <button onClick={() => setView('logout')}>Logout</button>

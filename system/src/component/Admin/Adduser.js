@@ -28,7 +28,8 @@ const UserForm = () => {
 
     return (
       <><Nav/>
-        <form className="user-form">
+        <form className="user-form" style={{marginTop:"120px"}}>
+            <h1 style={{textAlign:"center"}}>ADD USER FORM IN THE SYSTEM</h1>
             <label>
                 Name:
                 <input type="text" name="name" value={formData.name} onChange={handleChange} required />
@@ -48,6 +49,10 @@ const UserForm = () => {
             <label>
                 Username:
                 <input type="text" name="username" value={formData.username} onChange={handleChange} required />
+            </label>
+            <label>
+                User Role:
+                <input type="text" name="role" value={formData.role} onChange={handleChange} required />
             </label>
             <label>
                 Password:

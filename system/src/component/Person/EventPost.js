@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Nav from '../Navigation/Nav';
 
 const EventUpload = () => {
-    const personId = parseInt(localStorage.getItem("userId"))
+    const personId = parseInt(localStorage.getItem("userId"));
 
     const [eventDetails, setEventDetails] = useState({
         eventName: '',
@@ -11,12 +11,13 @@ const EventUpload = () => {
         eventDate: '',
         eventTime: '',
         eventImage: null,
-        userId: personId,
+        person_id: personId,
+        shehiaId: 2, // Added shehaId field
     });
 
     useEffect(() => {
-        setEventDetails(prevDetails => ({ ...prevDetails, userId: personId }));
-    }, []);
+        setEventDetails(prevDetails => ({ ...prevDetails, person_id: personId }));
+    }, [personId]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -42,13 +43,17 @@ const EventUpload = () => {
         formData.append('event_location', eventDetails.eventLocation);
         formData.append('time_posted', `${eventDetails.eventDate} ${eventDetails.eventTime}`);
         formData.append('image', eventDetails.eventImage);
-        formData.append('userId', personId);
+        formData.append('person_id', eventDetails.person_id);
+        formData.append('shehiaId', eventDetails.shehiaId); // Include shehaId if necessary
 
         try {
             const response = await fetch('http://localhost:8080/api/v1/event/add', {
                 method: 'POST',
                 body: formData,
             });
+
+            const responseData = await response.json();
+            console.log(responseData); // Log the response
 
             if (response.ok) {
                 alert('Event has been submitted successfully.');
@@ -60,6 +65,14 @@ const EventUpload = () => {
             alert('An error occurred while submitting the event.');
         }
     };
+    const [shehias, setShehias] = useState([]); // State to store the list of shehias
+
+    useEffect(() => {
+      // Fetch the list of shehias from the API
+      fetch('http://localhost:8080/api/v1/shehia/all')
+        .then(response => response.json())
+        .then(data => setShehias(data));
+    }, []);
 
     return (
         <>
@@ -101,6 +114,32 @@ const EventUpload = () => {
                             required
                         />
                     </label>
+                    <label>
+                        {/* Event UserId: */}
+                        <input
+                            type="text"
+                            name="userId"
+                            value={personId} // Make sure it's the correct user ID
+                            readOnly hidden
+                        />
+                    </label>
+                    <label>
+            Shehia Name:
+            <select
+              name="shehiaId"
+              value={eventDetails.shehiaId}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select shehia that event happen</option>
+              {shehias.map((shehia) => (
+                <option key={shehia.shehiaId} value={shehia.shehiaId}>
+                  {shehia.shehiaName}
+                </option>
+              ))}
+            </select>
+                    </label>
+
                     <label>
                         Event Date:
                         <input

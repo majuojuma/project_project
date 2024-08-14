@@ -36,7 +36,7 @@ const EventManager = () => {
 
     return (
         <><Nav />
-        <div className="event-manager">
+        <div className="event-manager" style={{marginLeft:"16%", marginTop:"104px"}}>
             <h1>MANAGER EVENTS</h1>
             <form className="event-form" onSubmit={handleAddEvent}>
                 <label>

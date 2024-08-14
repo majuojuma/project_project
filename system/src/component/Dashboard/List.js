@@ -1,31 +1,35 @@
 const List = {
     Person : [
-        {label:'Person dashboard' , path: '/pers'},
+        {label:'Person dashboard' , path: '/statistic'},
         {label:'View event' , path:'/event'},
         {label:'View respond', path:'/response'},
-        {label:'Post event',path:'/post'}
+        {label:'Post event',path:'/post'},
+        {label: 'Logout', path:'/'}
     ],
 
     Admin :[
-        {label:'Admin Dashbod' ,  path: '/admin'},
+        {label:'Admin Dashbod' ,  path: '/statistic'},
         {label:'Add user' , path: '/add'},
         {label:'Manage event',path:'/event-manager'},
         {label:'Generate report',path:'/admin'},
         {label:'View event',path:'/event'},
-        {label:'Setting',path:'/setting'}
+        {label:'Setting',path:'/setting'},
+        {label: 'Logout', path:'/'}
     ],
 
-    Officer:[
-        {label:'Officer Dashboad',path:'officer'},
-        {label:'View event',path:'view'},
-        {label:'View location',path:'event'},
-        {label:'Sent response',path:'sendresp'}
+    officer:[
+        {label:'Officer Dashboad',path:'/statistic'},
+        {label:'View event',path:'/view'},
+        {label:'View location',path:'/event'},
+        {label:'Sent response',path:'/sendresp'},
+        {label: 'Logout', path:'/'}
     ],
 
     Sheha :[
-        {label:'Sheha Dashboad',path:'var'},
-        {label:'View event',path:'event'},
-        {label:'Varify event',path:'var'}
+        {label:'Sheha Dashboad',path:'/viewsammary'},
+        {label:'View event',path:'/eventview'},
+        {label:'Varify event',path:'/verifyevent/:eventId'},
+        {label: 'Logout', path:'/'}
     ]
 
 }
