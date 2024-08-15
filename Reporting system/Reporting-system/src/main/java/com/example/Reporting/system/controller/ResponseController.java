@@ -1,8 +1,11 @@
 package com.example.Reporting.system.controller;
 
+import com.example.Reporting.system.model.Event;
+import com.example.Reporting.system.model.Officer;
 import com.example.Reporting.system.model.Response;
 import com.example.Reporting.system.repository.ResponseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +24,7 @@ public class ResponseController {
         return responseRepo.findAll();
     }
 
+
     @PostMapping("/add")
     public ResponseEntity<?> addresponse(@RequestBody Response response) {
         try {
@@ -30,6 +34,16 @@ public class ResponseController {
             return new ResponseEntity<>("not inserted", HttpStatus.BAD_REQUEST);
         }
     }
+    @PostMapping("/send")
+    public ResponseEntity<?> sendResponse(@RequestBody Response response) {
+        try {
+            responseRepo.save(response);
+            return new ResponseEntity<>("Response sent successfully.", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Failed to send response.", HttpStatus.BAD_REQUEST);
+        }
+    }
+
 //    @PutMapping("/update")
 //    public String updateResponse(@PathVariable Integer responseId, @RequestBody Response response){
 //        Response updatedResponse=responseRepo.findById(responseId).get();

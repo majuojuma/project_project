@@ -46,20 +46,27 @@ public class ShehaController {
     }
 
     @PostMapping("/verify/{eventId}")
-    public ResponseEntity<?> verifyEvent(@PathVariable Integer eventId) {
+    public ResponseEntity<?> verifyEvent(@PathVariable Integer eventId, @RequestBody String description) {
         try {
-            Event event = eventRepo.findById(Math.toIntExact(eventId)).orElseThrow();
-            event.setVerified(true); // Assuming there is a field to mark an event as verified
+            // Verify the event
+            Event event = eventRepo.findById(eventId).orElseThrow();
+            event.setVerified(true);
             eventRepo.save(event);
 
-            // Send email to the relevant officer
-            Officer officer = (Officer) officerRepo.findByEventType(event.getEvent_type()).orElseThrow(); // Assuming you have a method to get the officer by event type
+            // Find the officer and send notification email
+            Officer officer = (Officer) officerRepo.findByEventType(event.getEvent_type()).orElseThrow();
             String officerTo = officer.getEmail();
             String officerSubject = "New Verified Event Needs Your Attention";
             String officerText = "Dear " + officer.getUsername() + ",\n\nAn event '" + event.getEvent_name() + "' in your department has been verified. Please take necessary action.\n\nThank you!";
             emailService.sendEmail(officerTo, officerSubject, officerText);
 
-            return new ResponseEntity<>("Event verified and officer notified.", HttpStatus.OK);
+            // Send confirmation to Sheha
+            String shehaTo = "sheha@example.com"; // You need to get the Sheha's email dynamically
+            String shehaSubject = "Event Verification Successful";
+            String shehaText = "Dear Sheha,\n\nThe event '" + event.getEvent_name() + "' has been successfully verified. Thank you for your attention.\n\nBest regards,\nYour System";
+            emailService.sendEmail(shehaTo, shehaSubject, shehaText);
+
+            return new ResponseEntity<>("Event verified and notifications sent.", HttpStatus.OK);
         } catch (Exception exception) {
             return new ResponseEntity<>("Verification failed.", HttpStatus.BAD_REQUEST);
         }

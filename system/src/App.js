@@ -18,7 +18,6 @@ import EventTable from './pages/EventTable';
 import EventStatistics from './component/Person/EventStatistics';
 import EventSammary from './component/Sheha/EventSammary';
 import EventView from './component/Sheha/EventView';
-import Update from './component/Person/UpdateEvent';
 import UpdateEvent from './component/Person/UpdateEvent';
 
 function App() {
@@ -49,8 +48,12 @@ function App() {
       <Route path='/setting' element={<AdminSettings/>}/>
       <Route path='/response' element={<EventResponse/>}/>
       <Route path='/post' element={<EventPost/>}/>
-      <Route path='/view' element={<EventList/>}/>
-      <Route path='/sendresp' element={<OfficerResponse/>}/>
+      {/* <Route path='/view' element={<EventList/>}/> */}
+      {/* <Route path='/sendresp' element={<OfficerResponse/>}/> */}
+      
+       <Route path="/event-list" element={<EventList />} />
+       <Route path="/officer-response" element={<OfficerResponse />} />
+      
     </Routes>
     
   

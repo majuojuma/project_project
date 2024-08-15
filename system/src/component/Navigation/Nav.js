@@ -11,7 +11,7 @@ const Nav = ({ userRole = localStorage.getItem('role') }) => {
     <>
       <Header />
       <div className="nav">
-      <h3 style={{marginLeft:30}}>Main Navigation</h3>
+      <h3 style={{marginLeft:0}}>Main Navigation</h3>
         <ul style={{ listStyleType: 'none', paddingLeft: 0 , marginLeft: 20, marginTop:30}}>
           {links[userRole].map((link, index) => (
             <li key={index}>

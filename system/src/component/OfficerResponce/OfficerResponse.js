@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Nav from '../Navigation/Nav';
+import axios from 'axios';
 
 const OfficerResponse = () => {
     const [responseDetails, setResponseDetails] = useState({
@@ -19,14 +20,19 @@ const OfficerResponse = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission and response logic here
-        console.log('Response Details:', responseDetails);
-        alert('Response has been sent to the user.');
+        axios.post('http://localhost:8080/api/v1/response/send', responseDetails)
+            .then(response => {
+                console.log('Response sent:', response.data);
+                alert('Response has been sent to the user.');
+            })
+            .catch(error => {
+                console.error('Error sending response:', error);
+                alert('Failed to send response.');
+            });
     };
-
     return (
         <><Nav />
-        <div className="officer-response">
+        <div className="officer-response" style={{marginLeft:"16%", marginTop:"105px"}}>
             <h1>Send Response to User</h1>
             <form onSubmit={handleSubmit}>
                 <label>

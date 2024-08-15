@@ -6,20 +6,22 @@ import jakarta.persistence.*;
 @Table(name = "response")
 public class Response {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer responseId;
+    private int id;
 
-    private String status;
+    private Integer eventId;
+    private String officerName;
+    private String center;
+    private String responseMessage;
 
-    private String responseTime;
+  
 
     @ManyToOne
-    private Event event;
-
-    @ManyToOne
+    @JoinColumn(name = "user_id")
     private Officer officer;
 
-    // getters and setters
+
+
+    // Getters and setters
 }

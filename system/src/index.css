@@ -14,7 +14,7 @@ code {
 
 }
 .header{
-  color: rgb(253, 253, 253);
+  color: rgb(243, 238, 238);
   width: 100%;
   /* position: 0; */
   position: fixed;
@@ -28,18 +28,18 @@ top: 0;
 .nav{
   position:fixed;
   float: left;
-  color: rgb(255, 255, 255);
+  color: rgb(24, 21, 21);
   width: 15%;
   /* margin-right: 299999px; */
   padding-left: 15px;
   top: 12.5%;
   margin-top: 20px;
   height: 1000px;
-  background: #181717;
+  background: #266c8d;
 }
 
 .btn{
-  background-color: aqua;
+  background-color: rgb(55, 184, 184);
   text-emphasis: none;
   text-align: center;
   padding: 5px;
@@ -468,9 +468,10 @@ h1 {
 }
 /* event respond to person */
 .event-response {
-  width: 80%;
+  width: 50%;
   margin: auto;
-  margin-left: 15%;
+  margin-top: 200px;
+  margin-left: 2000%;
   padding: 20px;
   border: 1px solid #5f9e46;
   border-radius: 5px;

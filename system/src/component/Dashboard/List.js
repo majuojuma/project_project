@@ -12,16 +12,15 @@ const List = {
         {label:'Add user' , path: '/add'},
         {label:'Manage event',path:'/event-manager'},
         {label:'Generate report',path:'/admin'},
-        {label:'View event',path:'/event'},
+        {label:'View event',path:'/eventview'},
         {label:'Setting',path:'/setting'},
         {label: 'Logout', path:'/'}
     ],
 
     officer:[
         {label:'Officer Dashboad',path:'/statistic'},
-        {label:'View event',path:'/view'},
-        {label:'View location',path:'/event'},
-        {label:'Sent response',path:'/sendresp'},
+        {label:'View event',path:'/event-list'},
+        {label:'Sent response',path:'/officer-response'},
         {label: 'Logout', path:'/'}
     ],
 
