@@ -34,15 +34,15 @@ public class ResponseController {
             return new ResponseEntity<>("not inserted", HttpStatus.BAD_REQUEST);
         }
     }
-    @PostMapping("/send")
-    public ResponseEntity<?> sendResponse(@RequestBody Response response) {
-        try {
-            responseRepo.save(response);
-            return new ResponseEntity<>("Response sent successfully.", HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Failed to send response.", HttpStatus.BAD_REQUEST);
-        }
-    }
+//    @PostMapping("/send")
+//    public ResponseEntity<?> sendResponse(@RequestBody Response response) {
+//        try {
+//            responseRepo.save(response);
+//            return new ResponseEntity<>("Response sent successfully.", HttpStatus.OK);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>("Failed to send response.", HttpStatus.BAD_REQUEST);
+//        }
+//    }
 
 //    @PutMapping("/update")
 //    public String updateResponse(@PathVariable Integer responseId, @RequestBody Response response){

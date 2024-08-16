@@ -20,7 +20,8 @@ const List = {
     officer:[
         {label:'Officer Dashboad',path:'/statistic'},
         {label:'View event',path:'/event-list'},
-        {label:'Sent response',path:'/officer-response'},
+        // {label:'Sent response',path:'/officer-response'},
+        {label: 'view response', path:'/viewresponse'},
         {label: 'Logout', path:'/'}
     ],
 

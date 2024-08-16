@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';  // Import useEffect here
 import Nav from '../Navigation/Nav';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const EventList = () => {
     // Define the events state
     const [events, setEvents] = useState([]);
-    const [selectedEvent, setSelectedEvent] = useState(null);
+  
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/v1/event/all')
@@ -13,41 +14,63 @@ const EventList = () => {
             .catch(error => console.error('Error fetching events:', error));
     }, []);
 
-    const handleEventClick = (event) => {
-        setSelectedEvent(event);
-    };
+    // const handleEventClick = (event) => {
+    //     setSelectedEvent(event);
+    // };
 
-    const handleUpdateEvent = () => {
-        // Handle update event logic here
-        alert('Event has been updated successfly.');
-    };
+    // const handleUpdateEvent = () => {
+    //     // Handle update event logic here
+    //     alert('Event has been updated successfly.');
+    // };
 
     return (
         <>
             <Nav />
-            <div className="event-list" style={{marginTop:"103px"}}>
-                <h1>Uploaded Events</h1>
-                <div className="events">
-                    {events.map(event => (
-                        <div key={event.id} className="event-item" onClick={() => handleEventClick(event)}>
-                            <h2>{event.eventName}</h2>
-                            <p>{event.eventLocation}</p>
-                        </div>
-                    ))}
-                </div>
-                {selectedEvent && (
-                    <div className="event-details">
-                        <h2>{selectedEvent.eventName}</h2>
-                        <p><strong>Type:</strong> {selectedEvent.eventType}</p>
-                        <p><strong>Location:</strong> {selectedEvent.eventLocation}</p>
-                        <p><strong>Date:</strong> {selectedEvent.eventDate}</p>
-                        <p><strong>Time:</strong> {selectedEvent.eventTime}</p>
-                        <img src={selectedEvent.eventImage} alt={selectedEvent.eventName} />
-                        <button onClick={handleUpdateEvent}>Update Event</button>
-                    </div>
-                )}
-            </div>
-        </>
+
+        <div className="table-container" style={{ marginTop: "150px" }}>
+        <h2>View Event </h2>
+        <table className="event-table">
+          <thead>
+            <tr>
+              <th>Event ID</th>
+              <th>Event Name</th>
+              <th>Event Type</th>
+              <th>Event Location</th>
+              <th>Shehia Name</th>
+              <th>Time Posted</th>
+              <th>Image</th>
+              <th>Action</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {events.map((event) => (
+              <tr key={event.event_id}>
+                <td>{event.event_id}</td>
+                <td>{event.event_name}</td>
+                <td>{event.event_type}</td>
+                <td>{event.event_location}</td>
+                <td>{event.shehia.shehiaName}</td>
+                <td>{event.time_posted}</td>
+                <td>
+                  <img
+                    src={`data:image/png;base64,${event.image}`}
+                    alt={event.event_name}
+                    className="event-image"
+                  />
+                </td>
+                <td>
+                  <Link to={`/officer-response/${event.event_id}`} className='btn'>add Response</Link>
+                </td>
+                <td>
+                  <button className='btn1' >Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+                    </>
     );
 };
 

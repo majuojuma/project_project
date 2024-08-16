@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Nav from '../Navigation/Nav';
 import axios from 'axios';
 
+
 const EventResponse = () => {
     const [eventResponses, setEventResponses] = useState([]);
+
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/v1/response/all')
@@ -15,7 +17,7 @@ const EventResponse = () => {
         <>
             <Nav />
             <div className="event-response" style={{marginLeft:"17%", textDecoration:"center"}}>
-                <h1>Event Responses</h1>
+                <h1>Event Responses </h1>
                 <div className="response-list">
                     {eventResponses.map(response => (
                         <div key={response.eventId} className="response-item">

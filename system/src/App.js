@@ -19,6 +19,7 @@ import EventStatistics from './component/Person/EventStatistics';
 import EventSammary from './component/Sheha/EventSammary';
 import EventView from './component/Sheha/EventView';
 import UpdateEvent from './component/Person/UpdateEvent';
+import ViewResponse from './component/OfficerResponce/ViewResponse';
 
 function App() {
   return (
@@ -52,7 +53,8 @@ function App() {
       {/* <Route path='/sendresp' element={<OfficerResponse/>}/> */}
       
        <Route path="/event-list" element={<EventList />} />
-       <Route path="/officer-response" element={<OfficerResponse />} />
+       <Route path="/officer-response/:event_id" element={<OfficerResponse />} />
+       <Route path='viewresponse' element={<ViewResponse/>}/>
       
     </Routes>
     

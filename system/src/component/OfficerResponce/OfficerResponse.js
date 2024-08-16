@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import Nav from '../Navigation/Nav';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const OfficerResponse = () => {
+    const { event_id } = useParams();
+    const officerId = parseInt(localStorage.getItem('userId'))
+
     const [responseDetails, setResponseDetails] = useState({
-        eventId: '',
-        officerName: '',
-        center: '',
+        id: 0,
         responseMessage: '',
+        response_Time: '',
+        officer: {
+            userId: officerId
+        },
+        event: {
+            event_id: event_id
+        }
     });
 
     const handleChange = (e) => {
@@ -20,7 +29,7 @@ const OfficerResponse = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8080/api/v1/response/send', responseDetails)
+        axios.post('http://localhost:8080/api/v1/response/add', responseDetails)
             .then(response => {
                 console.log('Response sent:', response.data);
                 alert('Response has been sent to the user.');
@@ -35,40 +44,6 @@ const OfficerResponse = () => {
         <div className="officer-response" style={{marginLeft:"16%", marginTop:"105px"}}>
             <h1>Send Response to User</h1>
             <form onSubmit={handleSubmit}>
-                <label>
-                    Event ID:
-                    <input
-                        type="text"
-                        name="eventId"
-                        value={responseDetails.eventId}
-                        onChange={handleChange}
-                        required
-                    />
-                </label>
-                <label>
-                    Officer Name:
-                    <input
-                        type="text"
-                        name="officerName"
-                        value={responseDetails.officerName}
-                        onChange={handleChange}
-                        required
-                    />
-                </label>
-                <label>
-                    Center:
-                    <select
-                        name="center"
-                        value={responseDetails.center}
-                        onChange={handleChange}
-                        required
-                    >
-                        <option value="">Select Center</option>
-                        <option value="Police Station">Police Station</option>
-                        <option value="Fire Camp">Fire Camp</option>
-                        <option value="KMKM">KMKM</option>
-                    </select>
-                </label>
                 <label>
                     Response Message:
                     <textarea
