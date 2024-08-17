@@ -33,6 +33,7 @@ const LoginForm = () => {
       }
 
       if (userData.role === "Sheha"){
+        localStorage.setItem("shehiaId",userData.shehia.shehiaId);
         alert("hello sheha")
         navigate('/statistic')
       }

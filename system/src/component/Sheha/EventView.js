@@ -5,35 +5,36 @@ import Nav from '../Navigation/Nav';
 
 const ShehaEventView = () => {
   const [events, setEvents] = useState([]);
-  const [shehiaId, setShehiaId] = useState(null);
+  const shehiaId = parseInt(localStorage.getItem('shehiaId'));
+
+  // useEffect(() => {
+  //   // Retrieve Sheha's details stored in local storage
+  //   const shehaDetails = JSON.parse(localStorage.getItem('shehaDetails'));
+
+  //   if (shehaDetails && shehaDetails.shehiaId) {
+  //     setShehiaId(shehaDetails.shehiaId);
+  //   }
+  // }, []);
 
   useEffect(() => {
-    // Assuming you stored the Sheha's details in local storage upon login
-    const shehaDetails = JSON.parse(localStorage.getItem('shehaDetails'));
-
-    if (shehaDetails && shehaDetails.shehiaId) {
-      setShehiaId(shehaDetails.shehiaId);
-    }
-  }, []);
-
-  useEffect(() => {
-    // if (shehiaId) {
+    // Fetch events only when shehiaId is set
+    if (shehiaId) {
       axios.get('http://localhost:8080/api/v1/event/all')
         .then((response) => {
-          setEvents(response.data);
-          console.log(response.data)
+          const filteredResponses = response.data.filter(event => event.shehia.shehiaId === shehiaId);
+          setEvents(filteredResponses);
+          console.log(filteredResponses);
         })
         .catch(error => {
           console.error("There was an error fetching the events!", error);
         });
-      // }
-      // console.log(shehiaId)
-  }, []);
+    }
+  }, [shehiaId]); // Added shehiaId as dependency
 
   return (
     <>
       <Nav />
-      <div className="table-container" style={{marginTop:"116px", marginLeft:"17%"}}>
+      <div className="table-container" style={{ marginTop: "116px", marginLeft: "17%" }}>
         <h4>View Events for Shehia {shehiaId}</h4>
         {events.length > 0 ? (
           <table className="event-table">
@@ -45,7 +46,8 @@ const ShehaEventView = () => {
                 <th>Event Location</th>
                 <th>Time Posted</th>
                 <th>Image</th>
-                <th>Verify</th>
+                <th>Action</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -67,6 +69,9 @@ const ShehaEventView = () => {
                     <Link to={`/verifyevent/${event.event_id}`}>
                       <button className="btn">Verify</button>
                     </Link>
+                  </td>
+                  <td>
+                    <button className='btn2'>Unverify</button>
                   </td>
                 </tr>
               ))}

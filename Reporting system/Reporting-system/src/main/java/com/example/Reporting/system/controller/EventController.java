@@ -36,6 +36,37 @@ public class EventController {
 
     @Autowired
     private Service emailService;
+
+
+
+    @PatchMapping("/{eventId}/unapprove")
+    public ResponseEntity<Event> unapproveEvent(@PathVariable int eventId) {
+        Optional<Event> eventOptional = eventRepo.findById(eventId);
+
+        if (eventOptional.isPresent()) {
+            Event eventToUpdate = eventOptional.get();
+            eventToUpdate.setStatus("unapproved");
+            eventRepo.save(eventToUpdate);
+            return ResponseEntity.ok(eventToUpdate);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @PatchMapping("/{eventId}/proved")
+    public ResponseEntity<Event> provedEvent(@PathVariable int eventId){
+        Optional<Event> eventOptional = eventRepo.findById(eventId);
+
+        if (eventOptional.isPresent()){
+            Event eventToUpdate = eventOptional.get();
+            eventRepo.save(eventToUpdate);
+            return ResponseEntity.ok(eventToUpdate);
+        }else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+
     @PostMapping("/add")
     public Event addEvent(
             @RequestParam("event_name") String event_name,
@@ -146,6 +177,8 @@ public class EventController {
         eventRepo.save(updatedEvent);
         return "one event are updated";
     }
+
+
 
 }
 

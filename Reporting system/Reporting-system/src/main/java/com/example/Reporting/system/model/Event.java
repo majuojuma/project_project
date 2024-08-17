@@ -13,6 +13,7 @@ public class Event {
     private String event_type;
     private String time_posted;
     private String event_location;
+    private String Status;
     @Lob
     @Column(length = 10000000)
     private  byte[] image;
@@ -33,5 +34,13 @@ public class Event {
 
     public void setVerified(boolean b) {
 
+    }
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
     }
 }

@@ -6,29 +6,49 @@ import axios from 'axios';
 const EventResponse = () => {
     const [eventResponses, setEventResponses] = useState([]);
 
+    const userId = parseInt(localStorage.getItem('userId'));
+
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/v1/response/all')
-            .then(response => setEventResponses(response.data))
+            .then(response => {
+                // Filter the responses by person userId
+                const filteredResponses = response.data.filter(response => response.event.person.userId === userId);
+                setEventResponses(filteredResponses);
+            })
             .catch(error => console.error('Error fetching responses:', error));
-    }, []);
+    }, [userId]);
     
     return (
         <>
             <Nav />
-            <div className="event-response" style={{marginLeft:"17%", textDecoration:"center"}}>
-                <h1>Event Responses </h1>
-                <div className="response-list">
-                    {eventResponses.map(response => (
-                        <div key={response.eventId} className="response-item">
-                            <h2>{response.eventName}</h2>
-                            <p><strong>Station:</strong> {response.station}</p>
-                            <p><strong>Status:</strong> {response.status}</p>
-                            <p><strong>Estimated Time:</strong> {response.estimatedTime}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
+            <div className="table-container" style={{ marginTop: "150px" }}>
+        <h2>View Response</h2>
+        <table className="event-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Event</th>
+              <th>Shehia name</th>
+              <th>Feedback</th>
+              <th>Response date</th>
+             
+            </tr>
+          </thead>
+          <tbody>
+            {eventResponses.map((event,index) => (
+              <tr key={event.id}>
+                <td>{index + 1}</td>
+                <td>{event.event.event_type}</td>
+                <td>{event.event.shehia.shehiaName}</td>
+                <td>{event.responseMessage}</td>
+                <td>{event.response_Time}</td>
+
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
         </>
     );
 };

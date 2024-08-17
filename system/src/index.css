@@ -44,6 +44,12 @@ top: 0;
   text-align: center;
   padding: 5px;
 }
+.btn2{
+  background-color: #08a537;
+  padding: 5px;
+  text-align: center;
+  border-radius: 5px;
+}
 .btn1{
   background-color: rgb(196, 16, 16);
     text-emphasis: none;
