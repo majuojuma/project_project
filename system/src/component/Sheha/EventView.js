@@ -7,29 +7,54 @@ const ShehaEventView = () => {
   const [events, setEvents] = useState([]);
   const shehiaId = parseInt(localStorage.getItem('shehiaId'));
 
-  // useEffect(() => {
-  //   // Retrieve Sheha's details stored in local storage
-  //   const shehaDetails = JSON.parse(localStorage.getItem('shehaDetails'));
-
-  //   if (shehaDetails && shehaDetails.shehiaId) {
-  //     setShehiaId(shehaDetails.shehiaId);
-  //   }
-  // }, []);
-
   useEffect(() => {
-    // Fetch events only when shehiaId is set
     if (shehiaId) {
       axios.get('http://localhost:8080/api/v1/event/all')
         .then((response) => {
           const filteredResponses = response.data.filter(event => event.shehia.shehiaId === shehiaId);
           setEvents(filteredResponses);
-          console.log(filteredResponses);
         })
         .catch(error => {
           console.error("There was an error fetching the events!", error);
         });
     }
-  }, [shehiaId]); // Added shehiaId as dependency
+  }, [shehiaId]);
+
+  useEffect(() => {
+    // Refresh the page when events state changes
+    if (events.length > 0) {
+      axios.get('http://localhost:8080/api/v1/event/all')
+        .then((response) => {
+          const filteredResponses = response.data.filter(event => event.shehia.shehiaId === shehiaId);
+          setEvents(filteredResponses);
+        })
+        .catch(error => {
+          console.error("There was an error fetching the events!", error);
+        });
+    }
+  }, [events]);
+
+  const handleApprove = (eventId) => {
+    axios.patch(`http://localhost:8080/api/v1/event/${eventId}/proved`)
+      .then((response) => {
+        // Update the events state to trigger the refresh
+        setEvents(events.map(event => event.event_id === eventId ? { ...event, status: 'approved' } : event));
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+  const handleunapprove = (eventId) => {
+    axios.patch(`http://localhost:8080/api/v1/event/${eventId}/unapprove`)
+      .then((response) => {
+        // Update the events state to trigger the refresh
+        setEvents(events.map(event => event.event_id === eventId ? { ...event, status: 'unapproved' } : event));
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
 
   return (
     <>
@@ -46,8 +71,9 @@ const ShehaEventView = () => {
                 <th>Event Location</th>
                 <th>Time Posted</th>
                 <th>Image</th>
-                <th>Action</th>
-                <th>Action</th>
+                <th>Approve</th>
+                <th>Unapprove</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
@@ -66,13 +92,12 @@ const ShehaEventView = () => {
                     />
                   </td>
                   <td>
-                    <Link to={`/verifyevent/${event.event_id}`}>
-                      <button className="btn">Verify</button>
-                    </Link>
+                    <button className='btn' onClick={() => handleApprove(event.event_id)}>Approve</button>
                   </td>
                   <td>
-                    <button className='btn2'>Unverify</button>
+                    <button className='btn1' onClick={()=> handleunapprove(event.event_id)}>Unapprove</button> 
                   </td>
+                  <td>{event.status}</td>
                 </tr>
               ))}
             </tbody>

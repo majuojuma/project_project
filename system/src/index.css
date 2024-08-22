@@ -32,7 +32,7 @@ top: 0;
   width: 15%;
   /* margin-right: 299999px; */
   padding-left: 15px;
-  top: 12.5%;
+  top: 11.2%;
   margin-top: 20px;
   height: 1000px;
   background: #266c8d;
@@ -44,12 +44,12 @@ top: 0;
   text-align: center;
   padding: 5px;
 }
-.btn2{
+/* .btn2{
   background-color: #08a537;
   padding: 5px;
   text-align: center;
   border-radius: 5px;
-}
+} */
 .btn1{
   background-color: rgb(196, 16, 16);
     text-emphasis: none;
@@ -522,7 +522,7 @@ h1 {
 .event-upload {
   width: 80%;
   margin: auto;
-  margin-left: 15%;
+  margin-left: 16%;
   padding: 20px;
   border: 1px solid #51df35;
   border-radius: 5px;
@@ -578,7 +578,7 @@ h1 {
 }
 /* event list */
 .event-list {
-  width: 60%;
+  width: 10000px;
   margin: auto;
   padding: 30px;
   border: 1px solid #50739c;
@@ -1027,3 +1027,4 @@ ul  li  a{
   text-align: center;
   padding: 20px;
 }
+

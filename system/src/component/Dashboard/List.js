@@ -12,7 +12,7 @@ const List = {
         {label:'Add user' , path: '/add'},
         {label:'Manage event',path:'/event-manager'},
         {label:'Generate report',path:'/admin'},
-        {label:'View event',path:'/eventview'},
+        {label:'Admin Event',path:'/adminviews'},
         {label:'Setting',path:'/setting'},
         {label: 'Logout', path:'/'}
     ],
@@ -28,7 +28,7 @@ const List = {
     Sheha :[
         {label:'Sheha Dashboad',path:'/viewsammary'},
         {label:'View event',path:'/eventview'},
-        {label:'Varify event',path:'/verifyevent/:eventId'},
+        // {label:'Varify event',path:'/verifyevent/:eventId'},
         {label: 'Logout', path:'/'}
     ]
 

@@ -77,9 +77,9 @@ const EventUpload = () => {
     return (
         <>
             <Nav />
-            <div className="event-upload">
-                <h1>Submit Event On System</h1>
+            <div className="event-upload"style={{marginTop:"104px"}}>
                 <form onSubmit={handleSubmit}>
+                <h1>Register Event On System</h1>
                     <label>
                         Event Name:
                         <input

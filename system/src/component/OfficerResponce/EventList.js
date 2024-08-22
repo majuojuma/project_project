@@ -14,13 +14,7 @@ const EventList = () => {
             .catch(error => console.error('Error fetching events:', error));
     }, []);
 
-    // const handleEventClick = (event) => {
-    //     setSelectedEvent(event);
-    // };
-
-    // const handleUpdateEvent = () => {
-    //     // Handle update event logic here
-    //     alert('Event has been updated successfly.');
+    alert('Event has been updated successfly.');
     // };
 
     return (
@@ -41,6 +35,7 @@ const EventList = () => {
               <th>Image</th>
               <th>Action</th>
               <th>Action</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
@@ -60,11 +55,13 @@ const EventList = () => {
                   />
                 </td>
                 <td>
-                  <Link to={`/officer-response/${event.event_id}`} className='btn'>add Response</Link>
+                  <Link to={`/officer-response/${event.event_id}`} className='btn'>SendResponse</Link>
                 </td>
                 <td>
                   <button className='btn1' >Delete</button>
                 </td>
+                <td>{event.status}</td>
+
               </tr>
             ))}
           </tbody>

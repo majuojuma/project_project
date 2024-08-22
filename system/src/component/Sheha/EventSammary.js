@@ -20,7 +20,7 @@ const EventSammary = () => {
      useEffect(()=>{
         axios.get('http://localhost:8080/api/v1/event/all')
         .then((response)=>{
-        const filterFireEvent = response.data.filter(item => item.event_type === "moto");
+        const filterFireEvent = response.data.filter(item => item.event_type === "tukio la moto");
             const total_fire_event = filterFireEvent.length;
             setFireEvent(total_fire_event);
         })

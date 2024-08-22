@@ -45,30 +45,71 @@ public class ShehaController {
         return shehaRepo.findAll();
     }
 
-    @PostMapping("/verify/{eventId}")
-    public ResponseEntity<?> verifyEvent(@PathVariable Integer eventId, @RequestBody String description) {
+//    @PostMapping("/verify/{eventId}")
+//    public ResponseEntity<?> verifyEvent(@PathVariable Integer eventId, @RequestBody String description) {
+//        try {
+//            // Verify the event
+//            Event event = eventRepo.findById(eventId).orElseThrow();
+//            event.setVerified(true);
+//            eventRepo.save(event);
+//
+//            // Find the officer and send notification email
+//            Officer officer = (Officer) officerRepo.findByEventType(event.getEvent_type()).orElseThrow();
+//            String officerTo = officer.getEmail();
+//            String officerSubject = "New Verified Event Needs Your Attention";
+//            String officerText = "Dear " + officer.getUsername() + ",\n\nAn event '" + event.getEvent_name() + "' in your department has been verified. Please take necessary action.\n\nThank you!";
+//            emailService.sendEmail(officerTo, officerSubject, officerText);
+//
+//            // Send confirmation to Sheha
+//            String shehaTo = "sheha@example.com"; // You need to get the Sheha's email dynamically
+//            String shehaSubject = "Event Verification Successful";
+//            String shehaText = "Dear Sheha,\n\nThe event '" + event.getEvent_name() + "' has been successfully verified. Thank you for your attention.\n\nBest regards,\nYour System";
+//            emailService.sendEmail(shehaTo, shehaSubject, shehaText);
+//
+//            return new ResponseEntity<>("Event verified and notifications sent.", HttpStatus.OK);
+//        } catch (Exception exception) {
+//            return new ResponseEntity<>("Verification failed.", HttpStatus.BAD_REQUEST);
+//        }
+//    }
+@PostMapping("/approve/{eventId}")
+public ResponseEntity<?> approveEvent(@PathVariable Integer eventId) {
+    try {
+        // Approve the event
+        Event event = eventRepo.findById(eventId).orElseThrow();
+        event.setVerified(true);
+        eventRepo.save(event);
+
+        // Find the officer and send notification email
+        Officer officer = (Officer) officerRepo.findByEventType(event.getEvent_type()).orElseThrow();
+        String officerTo = officer.getEmail();
+        String officerSubject = "New Approved Event Needs Your Attention";
+        String officerText = "Dear " + officer.getUsername() + ",\n\nAn event '" + event.getEvent_name() + "' in your department has been approved. Please take necessary action.\n\nThank you!";
+        emailService.sendEmail(officerTo, officerSubject, officerText);
+
+        return new ResponseEntity<>("Event approved and notification sent.", HttpStatus.OK);
+    } catch (Exception exception) {
+        return new ResponseEntity<>("Approval failed.", HttpStatus.BAD_REQUEST);
+    }
+}
+
+    @PostMapping("/unapprove/{eventId}")
+    public ResponseEntity<?> unapproveEvent(@PathVariable Integer eventId) {
         try {
-            // Verify the event
+            // Unapprove the event
             Event event = eventRepo.findById(eventId).orElseThrow();
-            event.setVerified(true);
+            event.setVerified(false);
             eventRepo.save(event);
 
             // Find the officer and send notification email
             Officer officer = (Officer) officerRepo.findByEventType(event.getEvent_type()).orElseThrow();
             String officerTo = officer.getEmail();
-            String officerSubject = "New Verified Event Needs Your Attention";
-            String officerText = "Dear " + officer.getUsername() + ",\n\nAn event '" + event.getEvent_name() + "' in your department has been verified. Please take necessary action.\n\nThank you!";
+            String officerSubject = "Event Unapproved, No Action Required";
+            String officerText = "Dear " + officer.getUsername() + ",\n\nAn event '" + event.getEvent_name() + "' in your department has been unapproved. You can relax.\n\nThank you!";
             emailService.sendEmail(officerTo, officerSubject, officerText);
 
-            // Send confirmation to Sheha
-            String shehaTo = "sheha@example.com"; // You need to get the Sheha's email dynamically
-            String shehaSubject = "Event Verification Successful";
-            String shehaText = "Dear Sheha,\n\nThe event '" + event.getEvent_name() + "' has been successfully verified. Thank you for your attention.\n\nBest regards,\nYour System";
-            emailService.sendEmail(shehaTo, shehaSubject, shehaText);
-
-            return new ResponseEntity<>("Event verified and notifications sent.", HttpStatus.OK);
+            return new ResponseEntity<>("Event unapproved and notification sent.", HttpStatus.OK);
         } catch (Exception exception) {
-            return new ResponseEntity<>("Verification failed.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Unapproval failed.", HttpStatus.BAD_REQUEST);
         }
     }
 }

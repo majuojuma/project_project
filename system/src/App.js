@@ -20,6 +20,8 @@ import EventSammary from './component/Sheha/EventSammary';
 import EventView from './component/Sheha/EventView';
 import UpdateEvent from './component/Person/UpdateEvent';
 import ViewResponse from './component/OfficerResponce/ViewResponse';
+import Protection from './component/Admin/Protection';
+import AdminEvent from './component/Admin/AdminEvent';
 
 function App() {
   return (
@@ -27,34 +29,50 @@ function App() {
      <Routes>
       <Route path='/' element={<Login/>}/>
       <Route path='/signup' element={<RegistrationForm/>}/>
-      <Route path='/h' element={<Header/>}/>
       <Route path='nav' element={<Nav/>}/>
-
       <Route path='statistic' element={<EventStatistics/>}/>
+     
+       
+        {/* Admin */}
+    <Route element={<Protection role="Admin"/>}>
 
       <Route path='admin' element={<Admin/>}/>
-
       <Route path='/add' element={<Adduser/>}/>
-
-      <Route path='/event' element={<EventTable/>}/>
-      <Route path='/update-event/:eventId' element={<UpdateEvent/>}/>
-
-      <Route path='/viewsammary' element={<EventSammary/>}/>
-      <Route path='/eventview' element={<EventView/>}/> 
-
-      {/* <Route path='/updateevent' element={<UpdateEvent/>}/> */}
-
-      <Route path='/verifyevent/:eventId' element={<Varifypage/>}/>
+      <Route path='/adminviews' element={<AdminEvent/>}/>
+      {/* <Route path='/eventview' element={<EventView/>}/>  */}
       <Route path='/event-manager' element={<EventManager/>}/>
       <Route path='/setting' element={<AdminSettings/>}/>
-      <Route path='/response' element={<EventResponse/>}/>
+      <Route path='statistic' element={<EventStatistics/>}/>
+      </Route>
+
+
+        {/* Person */}
+        <Route element={<Protection role="Person"/>}>
+      <Route path='/event' element={<EventTable/>}/>
+      <Route path='/update-event/:eventId' element={<UpdateEvent/>}/>
       <Route path='/post' element={<EventPost/>}/>
-      {/* <Route path='/view' element={<EventList/>}/> */}
-      {/* <Route path='/sendresp' element={<OfficerResponse/>}/> */}
+      <Route path='/response' element={<EventResponse/>}/>
       
+      </Route>
+
+
+            {/* Sheha */}
+      <Route element={<Protection role="Sheha"/>}>
+      <Route path='/viewsammary' element={<EventSammary/>}/>
+      <Route path='/eventview' element={<EventView/>}/> 
+      <Route path='/verifyevent/:eventId' element={<Varifypage/>}/>
+      <Route path='statistic' element={<EventStatistics/>}/>
+      </Route>
+      
+      
+  
+                {/* Officer */}
+      <Route element={<Protection role="officer"/>}>
        <Route path="/event-list" element={<EventList />} />
        <Route path="/officer-response/:event_id" element={<OfficerResponse />} />
        <Route path='viewresponse' element={<ViewResponse/>}/>
+       <Route path='statistic' element={<EventStatistics/>}/>
+       </Route>
       
     </Routes>
     

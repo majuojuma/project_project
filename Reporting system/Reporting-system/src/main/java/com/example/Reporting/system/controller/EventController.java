@@ -58,6 +58,7 @@ public class EventController {
 
         if (eventOptional.isPresent()){
             Event eventToUpdate = eventOptional.get();
+            eventToUpdate.setStatus("Approved"); // Update the event status
             eventRepo.save(eventToUpdate);
             return ResponseEntity.ok(eventToUpdate);
         }else {
