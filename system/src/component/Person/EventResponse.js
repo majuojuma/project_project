@@ -10,14 +10,23 @@ const EventResponse = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/v1/response/all')
-            .then(response => {
-                // Filter the responses by person userId
-                const filteredResponses = response.data.filter(response => response.event.person.userId === userId);
-                setEventResponses(filteredResponses);
-            })
-            .catch(error => console.error('Error fetching responses:', error));
-    }, [userId]);
+      axios.get('http://localhost:8080/api/v1/response/all')
+          .then(response => {
+              // console.log(response.data);
+              
+              // Ensure 'userId' is defined
+              const filteredResponses = response.data.filter(
+                  response => response.event && response.event.person && response.event.person.userId === userId
+              );
+  
+              console.log("data",filteredResponses);
+              
+              // Set the state with the filtered data
+              setEventResponses(filteredResponses);
+          })
+          .catch(error => console.error('Error fetching responses:', error));
+  }, []);
+  
     
     return (
         <>

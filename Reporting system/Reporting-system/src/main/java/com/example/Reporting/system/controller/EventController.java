@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -36,6 +35,9 @@ public class EventController {
 
     @Autowired
     private Service emailService;
+
+
+
 
 
 
@@ -75,6 +77,7 @@ public class EventController {
             @RequestParam("time_posted") String time_posted,
             @RequestParam("event_location") String event_location,
             @RequestParam("image") MultipartFile image,
+            @RequestParam("status") String Status,
             @RequestParam("shehiaId") Long shehiaId,
             @RequestParam("person_id") int personId) throws IOException {
 
@@ -85,6 +88,7 @@ public class EventController {
         event.setTime_posted(time_posted);
         event.setEvent_location(event_location);
         event.setImage(image.getBytes());
+        event.setStatus(Status);
 
         Shehia shehia = shehiaRepo.findById(shehiaId).orElseThrow();
         event.setShehia(shehia);

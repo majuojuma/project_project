@@ -28,10 +28,10 @@ const ViewResponse = () => {
           {responseData.map((item) => (
             <div key={item.id} className="row">
               <div className="event-column">
-                <h2>{item.event.event_name}</h2>
-                <p>Location: {item.event.event_location}</p>
-                <p>Time posted: {item.event.time_posted}</p>
-                <p>Event type: {item.event.event_type}</p>
+                <h2>{item.event_name}</h2>
+                <p>Location: {item.event_location}</p>
+                <p>Time posted: {item.time_posted}</p>
+                <p>Event type: {item.event_type}</p>
               </div>
               <div className="separator"></div>
               <div className="response-column">

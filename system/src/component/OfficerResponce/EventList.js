@@ -6,15 +6,32 @@ import { Link } from 'react-router-dom';
 const EventList = () => {
     // Define the events state
     const [events, setEvents] = useState([]);
+
+    const tukio = localStorage.getItem('eventType');
+
+    const handleDelete = (eventId) => {
+      if (window.confirm('Are You Sure you Want to Delete')) {
+        axios.delete(`http://localhost:8080/api/v1/event/delete/${eventId}`)
+          .then((response) => {
+            // Remove the deleted event from the state
+            setEvents(events.filter(event => event.event_id !== eventId));
+          })
+          .catch((error) => {
+            console.error("There was an error deleting the event!", error);
+          });
+      }
+    };
   
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/v1/event/all')
-            .then(response => setEvents(response.data))
-            .catch(error => console.error('Error fetching events:', error));
+      axios.get('http://localhost:8080/api/v1/event/all')
+        .then(response => {
+          setEvents(response.data.filter(item => item.event_type === tukio));
+        })
+        .catch(error => console.error('Error fetching events:', error));
     }, []);
 
-    alert('Event has been updated successfly.');
+    // alert('Event has been updated successfly.');
     // };
 
     return (
@@ -59,6 +76,7 @@ const EventList = () => {
                 </td>
                 <td>
                   <button className='btn1' >Delete</button>
+                  {/* onClick={() => handleDelete(event.event_id)} */}
                 </td>
                 <td>{event.status}</td>
 

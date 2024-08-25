@@ -60,7 +60,7 @@ const ShehaEventView = () => {
     <>
       <Nav />
       <div className="table-container" style={{ marginTop: "116px", marginLeft: "17%" }}>
-        <h4>View Events for Shehia {shehiaId}</h4>
+        <h4>View Events for Shehia </h4>
         {events.length > 0 ? (
           <table className="event-table">
             <thead>

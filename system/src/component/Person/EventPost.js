@@ -11,6 +11,7 @@ const EventUpload = () => {
         eventDate: '',
         eventTime: '',
         eventImage: null,
+        status:'pending',
         person_id: personId,
         shehiaId: 2, // Added shehaId field
     });
@@ -43,6 +44,7 @@ const EventUpload = () => {
         formData.append('event_location', eventDetails.eventLocation);
         formData.append('time_posted', `${eventDetails.eventDate} ${eventDetails.eventTime}`);
         formData.append('image', eventDetails.eventImage);
+        formData.append('status', "pending");
         formData.append('person_id', eventDetails.person_id);
         formData.append('shehiaId', eventDetails.shehiaId); // Include shehaId if necessary
 

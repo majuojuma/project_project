@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -7,6 +7,15 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  const location = useLocation();
+  useEffect(()=>{
+    if (location.pathname ==='/') {
+      localStorage.removeItem('userId');
+      localStorage.removeItem('role');
+      
+    }
+  },[location]);
 
   
  const handleSubmit =async (event) =>{
@@ -40,6 +49,7 @@ const LoginForm = () => {
 
       if(userData.role === "officer"){
         alert("Hi officer" )
+        localStorage.setItem("eventType",userData.eventType);
         navigate('/statistic')
       }
       alert("success")
